@@ -1,6 +1,5 @@
 package org.example.myapp.application;
 
-import org.example.myapp.model.CodeCatalogue;
 import org.example.myapp.service.CodeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +16,9 @@ public class CodeCatalogueController {
     }
 
     @GetMapping("/codecatalogue")
-    public ResponseEntity<CodeCatalogue> getCodeCatalogue() {
-        return ResponseEntity.ok(codeService.getCodeCatalogue());
+    public ResponseEntity<CodeCatalogueDTO> getCodeCatalogue() {
+        CodeCatalogueDTO codeCatalogueDTO = new CodeCatalogueDTO("1.0", codeService.getCodeBooks());
+        return ResponseEntity.ok(codeCatalogueDTO);
     }
 
     @PostMapping("/testcodes")
